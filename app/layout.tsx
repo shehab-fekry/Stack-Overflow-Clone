@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import MainProvider from "@/context/main-provider";
+import Navbar from "@/components/navigation/navbar";
 
 const inter = Inter({
   variable: "--font-inter", // declared as variable to br used in CSS and TAILWIND
@@ -27,11 +29,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.className} ${space_grotesk.variable} antialiased`}
       >
-        {children}
+        <MainProvider>
+          <Navbar />
+          {children}
+        </MainProvider>
       </body>
     </html>
   );
