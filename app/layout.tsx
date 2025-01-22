@@ -1,8 +1,7 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
-import "./globals.css";
-import MainProvider from "@/context/main-provider";
-import Navbar from "@/components/navigation/navbar";
+import RootProvider from "@/context/root-provider";
 
 const inter = Inter({
   variable: "--font-inter", // declared as variable to br used in CSS and TAILWIND
@@ -33,10 +32,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} ${space_grotesk.variable} antialiased`}
       >
-        <MainProvider>
-          <Navbar />
-          {children}
-        </MainProvider>
+        <RootProvider>{children}</RootProvider>
       </body>
     </html>
   );

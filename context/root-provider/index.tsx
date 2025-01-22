@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import NextThemeProvider from "../next-themes";
 
-const MainProvider = ({ children }: { children: ReactNode }) => {
+const RootProvider = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <NextThemeProvider
@@ -15,4 +15,4 @@ const MainProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default MainProvider;
+export default RootProvider;
