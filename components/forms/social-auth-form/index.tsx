@@ -10,9 +10,9 @@ import React from "react";
 const SocialAuthForm = () => {
   const { toast } = useToast();
 
-  const githubAuthHandler = async () => {
+  const signinHandler = async (provider: "github" | "google") => {
     try {
-      await signIn("github", { redirectTo: ROUTES.HOME });
+      await signIn(provider, { redirectTo: ROUTES.HOME });
     } catch (error) {
       toast({
         title: "Something Went Wrong!",
@@ -29,7 +29,7 @@ const SocialAuthForm = () => {
     <div className="mt-10 flex flex-wrap gap-2.5">
       <Button
         className="background-dark400_light900 body-medium text-dark200_light800 min-h-12 flex-1 rounded-2 px-4 py-3.5"
-        onClick={() => githubAuthHandler()}
+        onClick={() => signinHandler("github")}
       >
         <Image
           src="/icons/github.svg"
@@ -40,7 +40,10 @@ const SocialAuthForm = () => {
         />
         <span>Log in with Github</span>
       </Button>
-      <Button className="background-dark400_light900 body-medium text-dark200_light800 min-h-12 flex-1 rounded-2 px-4 py-3.5">
+      <Button
+        className="background-dark400_light900 body-medium text-dark200_light800 min-h-12 flex-1 rounded-2 px-4 py-3.5"
+        onClick={() => signinHandler("google")}
+      >
         <Image
           src="/icons/google.svg"
           alt="Google Logo"
