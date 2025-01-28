@@ -1,6 +1,6 @@
 import { signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
-import { ROUTES } from "@/enums";
+import { ROUTES } from "@/enums/routes";
 
 const Home = async () => {
   const signoutHandler = async () => {

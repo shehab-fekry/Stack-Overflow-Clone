@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ROUTES } from "@/enums/index";
+import { ROUTES } from "@/enums/routes";
 import { useToast } from "@/hooks/use-toast";
 import { signIn } from "next-auth/react";
 import Image from "next/image";

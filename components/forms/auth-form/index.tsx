@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { ROUTES } from "@/enums";
+import { ROUTES } from "@/enums/routes";
 
 interface IAuthFormProps<T extends FieldValues> {
   formType: "SIGN_IN" | "SIGN_UP";
