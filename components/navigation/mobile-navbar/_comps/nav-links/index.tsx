@@ -42,6 +42,7 @@ const NavLinks = ({ isMobileNav = false }: { isMobileNav?: boolean }) => {
               width={20}
               height={20}
               alt="Nav Link"
+              style={{ height: "auto", width: "auto" }}
             />
             <p
               className={cn(
