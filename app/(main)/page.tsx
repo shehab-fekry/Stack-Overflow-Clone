@@ -1,3 +1,4 @@
+import Filters from "@/components/filters";
 import LocalSearch from "@/components/local-search";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/enums/routes";
@@ -9,7 +10,7 @@ const QUESTIONS = [
     title: "How to use express as a custom server in NextJS?",
     Description: "I want to use express as a custom server in nextjs. How can I do that?",
     tags: [
-      { _id: "1", name: "Nextjs" },
+      { _id: "1", name: "nextjs" },
       { _id: "2", name: "express" },
       { _id: "3", name: "custom-server" },
 
@@ -25,8 +26,8 @@ const QUESTIONS = [
     title: "How to learn React?",
     description: "I want to learn React, can anyone help me?",
     tags: [
-      { _id: "1", name: "React" },
-      { _id: "2", name: "JavaScript" },
+      { _id: "1", name: "react" },
+      { _id: "2", name: "javaScript" },
     ],
     author: { _id: "1", name: "John Doe" },
     upvotes: 10,
@@ -39,8 +40,8 @@ const QUESTIONS = [
     title: "How to learn JavaScript?",
     description: "I want to learn JavaScript, can anyone help me?",
     tags: [
-      { _id: "1", name: "React" },
-      { _id: "2", name: "JavaScript" },
+      { _id: "1", name: "react" },
+      { _id: "2", name: "javaScript" },
     ],
     author: { _id: "1", name: "John Doe" },
     upvotes: 10,
@@ -57,8 +58,23 @@ interface IHomeProps {
 
 
 const Home = async ({ searchParams }: IHomeProps) => {
-  const { query = "" } = await searchParams;
-  const hotQuestion = QUESTIONS.filter(question => question.title.toLowerCase().includes(query.toLowerCase()));
+  const { query = "", filter = "" } = await searchParams;
+  let hotQuestions = [...QUESTIONS];
+  
+  // 1 => filter based on search query
+  if(query.length)
+  hotQuestions = QUESTIONS.filter(question => 
+    question.title.toLowerCase().includes(query.toLowerCase())
+  );
+
+  // 2 => filter based on filters
+  if(filter.length)
+  hotQuestions = hotQuestions.filter(question => {
+    const tags = question.tags.map(tag => tag.name);
+    return tags.includes(filter);
+  });
+
+
 
   return (
     <div className="w-full h-full flex flex-col gap-8">
@@ -81,10 +97,10 @@ const Home = async ({ searchParams }: IHomeProps) => {
         />
       </section>
       {/* Filters */}
-      <section>Home Filters...</section>
+      <Filters/>
       {/* Questions */}
       <section className="flex flex-col gap-6 mt-5">
-        {hotQuestion.map(question => <p key={question._id}>{question.title}</p>)}
+        {hotQuestions.map(question => <p key={question._id}>{question.title}</p>)}
       </section>
     </div>
   );
