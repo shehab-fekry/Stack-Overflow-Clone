@@ -11,6 +11,10 @@ body {
 }
 
 @layer utilities {
+  .prose {
+    @apply text-dark200_light900
+  }
+   
   .background-light850_dark100 {
     @apply bg-light-850 dark:bg-dark-100;
   }
